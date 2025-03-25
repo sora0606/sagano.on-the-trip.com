@@ -1,0 +1,11 @@
+---
+const { label, orenge, ...props } = Astro.props;
+---
+
+<div class:list={['c-button__base', orenge && '--orenge']}>
+  <a {...props} class="c-button__base--link c-link">
+    <div class="c-button__base--inner">
+      <slot />
+    </div>
+  </a>
+</div>

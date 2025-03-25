@@ -1,0 +1,40 @@
+---
+import IconExternal from '@assets/icon-external.svg';
+---
+
+<header class="pointer-events-none fixed left-0 top-0 z-[100] h-auto w-full">
+  <span
+    class="pointer-events-none absolute inset-0 -z-10 [background:linear-gradient(0deg,rgba(15,15,15,0.00)_0%,rgba(15,15,15,0.80)_100%);]"
+  ></span>
+
+  <nav
+    class="flex h-auto w-full items-center justify-between px-2.5 pb-3 pt-11 md:px-[calc(50/16*1rem)]"
+  >
+    <div class="size-auto">
+      <ul class="flex h-auto w-full items-center justify-start">
+        <li class="size-auto">
+          <a href="/" class="link pointer-events-auto block size-auto py-2.5 pl-2.5 pr-4 md:pr-12">
+            <p class="title-en-md text-nowrap text-white">Guide</p>
+          </a>
+        </li>
+        <li class="size-auto">
+          <a href="/" class="link pointer-events-auto block size-auto px-4 py-2.5 md:pl-12 md:pr-5">
+            <p class="title-en-md text-nowrap text-white">Language</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="size-auto">
+      <a
+        href="/"
+        target="_blank"
+        class="link pointer-events-auto flex size-auto items-center justify-start gap-x-1.5 p-2.5"
+      >
+        <p class="title-2xs text-white">トロッコ列車 ホームページ</p>
+        <div class="h-auto w-2.5">
+          <img src={IconExternal.src} alt="" class="h-auto w-full text-white" />
+        </div>
+      </a>
+    </div>
+  </nav>
+</header>

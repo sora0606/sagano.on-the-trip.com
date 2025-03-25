@@ -1,0 +1,341 @@
+.effect-body {
+  transition: background-color 600ms ease;
+  background-color: theme(colors.white);
+
+  &.is-transition {
+    background-color: rgba(23, 23, 23, 0.7);
+  }
+}
+
+.effect-body-products {
+  transition: background-color 600ms ease;
+  background-color: theme(colors.white);
+
+  &.is-transition {
+    background-color: theme(colors.blue);
+  }
+}
+
+.effect-gradient-hero {
+  clip-path: inset(1px);
+  background: linear-gradient(98deg, #f86818 19.7%, #c9ac91 38.7%, #9ec8bb 55.69%, #6bc5ec 68.15%);
+  background-position: 0% 0%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-clip: text;
+  color: transparent;
+}
+
+.effect-gradient-section-title {
+  transform: translateX(20px);
+  clip-path: inset(0 100% 0 0);
+  background: linear-gradient(
+    98deg,
+    rgba(248, 104, 24, 1) 9.85%,
+    rgba(201, 172, 145, 1) 19.35%,
+    rgba(158, 200, 187, 1) 27.85%,
+    rgba(107, 197, 236, 1) 34.075%,
+    rgba(165, 215, 237, 1) 40%,
+    rgba(224, 246, 255, 1) 47%,
+    rgba(255, 255, 255, 1) 51%,
+    rgba(255, 255, 255, 1) 55%,
+    rgba(158, 164, 164, 1) 57%,
+    rgba(36, 36, 36, 1) 60%
+  );
+  background-position: 100% 0%;
+  background-size: 250%;
+  background-repeat: no-repeat;
+  background-clip: text;
+  color: transparent;
+
+  .is-action & {
+    transform: translateX(0);
+    clip-path: inset(1px);
+    transition:
+      clip-path 730ms cubic-bezier(0.12, 0.21, 0.21, 0.93),
+      transform 730ms cubic-bezier(0.12, 0.21, 0.21, 0.93),
+      background 800ms theme(transitionTimingFunction.cubic-in-out);
+    background-position: 0% 0%;
+  }
+}
+
+.effect-white-section-title {
+  transform: translateX(20px);
+  clip-path: inset(0 100% 0 0);
+
+  .is-action & {
+    transform: translateX(0);
+    clip-path: inset(1px);
+    transition:
+      color 200ms ease,
+      clip-path 730ms cubic-bezier(0.12, 0.21, 0.21, 0.93),
+      transform 730ms cubic-bezier(0.12, 0.21, 0.21, 0.93);
+  }
+}
+
+.effect-gradient-title {
+  transform: translateX(20px);
+  clip-path: inset(0 100% 0 0);
+  background: linear-gradient(
+    98deg,
+    rgba(248, 104, 24, 1) 9.85%,
+    rgba(201, 172, 145, 1) 19.35%,
+    rgba(158, 200, 187, 1) 27.85%,
+    rgba(107, 197, 236, 1) 34.075%,
+    rgba(165, 215, 237, 1) 40%,
+    rgba(224, 246, 255, 1) 47%,
+    rgba(255, 255, 255, 1) 51%,
+    rgba(255, 255, 255, 1) 55%,
+    rgba(158, 164, 164, 1) 57%,
+    rgba(36, 36, 36, 1) 60%
+  );
+  background-position: 100% 0%;
+  background-size: 250%;
+  background-repeat: no-repeat;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+
+  .is-action & {
+    transform: translateX(0);
+    clip-path: inset(1px);
+    transition:
+      letter-spacing 1400ms cubic-bezier(0.12, 0.21, 0.21, 0.93),
+      clip-path 1330ms cubic-bezier(0.12, 0.21, 0.21, 0.93),
+      transform 1330ms cubic-bezier(0.12, 0.21, 0.21, 0.93),
+      background 1400ms theme(transitionTimingFunction.cubic-in-out);
+    background-position: 0% 0%;
+    letter-spacing: 0;
+  }
+}
+
+.effect-white-title {
+  transform: translateX(20px);
+  clip-path: inset(0 100% 0 0);
+  background: linear-gradient(
+    98deg,
+    rgba(248, 104, 24, 1) 9.85%,
+    rgba(201, 172, 145, 1) 19.35%,
+    rgba(158, 200, 187, 1) 27.85%,
+    rgba(107, 197, 236, 1) 34.075%,
+    rgba(165, 215, 237, 1) 40%,
+    rgba(224, 246, 255, 1) 47%,
+    rgba(255, 255, 255, 1) 51%,
+    rgba(255, 255, 255, 1) 55%,
+    rgb(255, 255, 255) 57%,
+    rgb(255, 255, 255) 60%
+  );
+  background-position: 100% 0%;
+  background-size: 250%;
+  background-repeat: no-repeat;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+
+  .is-action & {
+    transform: translateX(0);
+    clip-path: inset(1px);
+    transition:
+      letter-spacing 1400ms cubic-bezier(0.12, 0.21, 0.21, 0.93),
+      clip-path 1330ms cubic-bezier(0.12, 0.21, 0.21, 0.93),
+      transform 1330ms cubic-bezier(0.12, 0.21, 0.21, 0.93),
+      background 1400ms theme(transitionTimingFunction.cubic-in-out);
+    background-position: 0% 0%;
+    letter-spacing: 0;
+  }
+}
+
+.effect-service-split-text {
+  & span[data-char] {
+    display: inline-block;
+    position: relative;
+    transform: translateY(100%);
+    transition: transform 750ms theme(transitionTimingFunction.heavy-out);
+    transition-delay: var(--start-delay);
+  }
+
+  .is-action & {
+    & span[data-char] {
+      transform: translateY(0);
+      transition: transform 750ms theme(transitionTimingFunction.heavy-out);
+      transition-delay: calc(200ms + var(--start-delay));
+    }
+  }
+}
+
+.effect-service-fadein {
+  opacity: 0;
+  transition: opacity 750ms theme(transitionTimingFunction.heavy-out);
+
+  &.is-action {
+    opacity: 1;
+  }
+}
+
+.effect-loading {
+  & .--logo {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+
+  & .--mask,
+  & .--mask-filter {
+    transform: scaleY(1);
+  }
+
+  & .--border {
+    transform: scaleX(1);
+  }
+
+  &.is-start {
+    & .--logo {
+      transform: translateY(0);
+      opacity: 1;
+      transition:
+        opacity 600ms cubic-bezier(0.6, 0, 0.3, 1) 300ms,
+        transform 1000ms cubic-bezier(0.6, 0, 0.3, 1);
+    }
+  }
+
+  &.is-action {
+    & .--logo {
+      transform: translateY(0);
+      opacity: 0;
+      transition: opacity 600ms cubic-bezier(0.6, 0, 0.3, 1);
+    }
+
+    & .--mask {
+      transform: scaleY(0);
+      transition: transform 1160ms theme(transitionTimingFunction.strong-out) 1700ms;
+    }
+
+    & .--border {
+      transform: scaleX(0);
+      transition: transform 1000ms theme(transitionTimingFunction.strong-out) 700ms;
+    }
+  }
+}
+
+.effect-page-transition {
+  visibility: hidden;
+  pointer-events: none;
+
+  & .--container {
+    clip-path: inset(0 50% 0 50%);
+  }
+
+  & .--inner {
+    clip-path: inset(calc(50% - 2px) 0 calc(50% - 2px) 0);
+  }
+
+  .page-transition & {
+    visibility: visible;
+    pointer-events: auto;
+
+    & .--container {
+      clip-path: inset(0);
+      transition: clip-path 750ms theme(transitionTimingFunction.strong-out);
+    }
+
+    & .--inner {
+      clip-path: inset(0);
+      transition: clip-path 750ms theme(transitionTimingFunction.strong-out) 700ms;
+    }
+  }
+}
+
+.effect-front-kv {
+  & .--title {
+    & span[data-char] {
+      display: inline-block;
+      position: relative;
+      transform: translateY(100%);
+    }
+  }
+
+  & .--text {
+    transform: translateY(20%);
+    opacity: 0;
+  }
+
+  &.is-action {
+    & .--title {
+      & span[data-char] {
+        transform: translateY(0);
+        transition: transform 800ms theme(transitionTimingFunction.heavy-out);
+        transition-delay: var(--start-delay);
+      }
+    }
+
+    & .--text {
+      transform: translateY(0);
+      opacity: 1;
+      transition:
+        opacity 1500ms theme(transitionTimingFunction.heavy-out) 460ms,
+        transform 1000ms theme(transitionTimingFunction.heavy-out) 300ms;
+    }
+  }
+}
+
+.effect-header-drawer {
+  clip-path: inset(0 50% 0 50%);
+  transition: clip-path 750ms theme(transitionTimingFunction.strong-out) 600ms;
+
+  & .--panel {
+    clip-path: inset(calc(50% - 2px) 0 calc(50% - 2px) 0);
+    transition: clip-path 750ms theme(transitionTimingFunction.strong-in);
+  }
+
+  & .--item {
+    transform: translateX(calc(40 / 375 * 100vw));
+    opacity: 0;
+    transition:
+      opacity 1500ms theme(transitionTimingFunction.heavy-out),
+      transform 1000ms theme(transitionTimingFunction.heavy-out) 750ms;
+
+    @screen md {
+      transform: translateX(calc(80 / 1440 * 100vw));
+    }
+  }
+
+  & .--cta {
+    transform: translateX(calc(40 / 375 * 100vw));
+    opacity: 0;
+    transition:
+      opacity 1500ms theme(transitionTimingFunction.heavy-out),
+      transform 1000ms theme(transitionTimingFunction.heavy-out) 750ms;
+
+    @screen md {
+      transform: translateX(calc(80 / 1440 * 100vw));
+    }
+  }
+
+  &.is-action {
+    clip-path: inset(0);
+    transition: clip-path 750ms theme(transitionTimingFunction.strong-in);
+
+    & .--panel {
+      clip-path: inset(0);
+      transition: clip-path 750ms theme(transitionTimingFunction.strong-out) 600ms;
+    }
+
+    & .--item {
+      transform: translateX(0);
+      opacity: 1;
+      transition:
+        opacity 1500ms theme(transitionTimingFunction.heavy-out),
+        transform 1000ms theme(transitionTimingFunction.heavy-out);
+      transition-delay: calc(800ms + var(--delay));
+    }
+
+    & .--cta {
+      transform: translateX(0);
+      opacity: 1;
+      transition:
+        opacity 1500ms theme(transitionTimingFunction.heavy-out) 1200ms,
+        transform 1000ms theme(transitionTimingFunction.heavy-out) 1200ms;
+    }
+  }
+}

@@ -1,0 +1,86 @@
+---
+import appleTouchIconImage from '@assets/apple-touch-icon.png';
+import faviconImage from '@assets/favicon.svg';
+import defaultOpenGraphImage from '@assets/opengraph-image.png';
+import { siteLang, siteRegion, siteTitle, siteTwitterId } from '../consts';
+import TheHeader from '@components/TheHeader.astro';
+import TheFooter from '@components/TheFooter.astro';
+
+interface BaseProps {
+  isHome?: false | undefined;
+  is404?: false | undefined;
+  title: string;
+  description?: string | undefined;
+  ogType?: 'website' | 'article' | undefined;
+  ogImage?: string | undefined;
+}
+
+interface GeneralProps extends BaseProps {}
+
+interface HomeProps extends Omit<BaseProps, 'isHome' | 'title'> {
+  isHome: true;
+  tagline: string;
+}
+
+interface NotFoundProps extends Omit<BaseProps, 'is404'> {
+  is404: true;
+}
+
+type Props = GeneralProps | HomeProps | NotFoundProps;
+
+const isHome = Astro.props.isHome === true;
+const is404 = Astro.props.is404 === true;
+
+const { description, ogType = 'website', ogImage = defaultOpenGraphImage.src } = Astro.props;
+
+const resolvedOgImage = new URL(ogImage, Astro.site);
+
+const canonicalURL = (() => {
+  if (is404) {
+    return null;
+  }
+  return new URL(Astro.url.pathname, Astro.site);
+})();
+---
+
+<html lang={siteLang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title
+      set:html={[!isHome && Astro.props.title, siteTitle, isHome && Astro.props.tagline]
+        .filter(Boolean)
+        .join(' &#8211; ')}
+    />
+
+    {description && <meta name="description" content={description} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={`@${siteTwitterId}`} />
+    <meta name="twitter:title" content={isHome ? siteTitle : Astro.props.title} />
+
+    <meta property="og:title" content={isHome ? Astro.props.tagline : Astro.props.title} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:image" content={resolvedOgImage} />
+    {canonicalURL && <meta property="og:url" content={canonicalURL} />}
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:site_name" content={siteTitle} />
+    <meta property="og:locale" content={`${siteLang}_${siteRegion}`} />
+
+    <link rel="apple-touch-icon" href={appleTouchIconImage.src} />
+    {canonicalURL && <link rel="canonical" href={canonicalURL} />}
+    <link rel="icon" href={faviconImage.src} type="image/svg+xml" />
+
+    <script src="../scripts/main.ts"></script>
+  </head>
+
+  <body x-data="scroll" class="min-h-svh">
+    <div x-data="loading" class="c-effect__loading"></div>
+
+    <TheHeader />
+    <slot />
+    <TheFooter />
+
+    <div id="js-overlay-container"></div>
+  </body>
+</html>
