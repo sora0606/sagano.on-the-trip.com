@@ -2,7 +2,7 @@
 import appleTouchIconImage from '@assets/apple-touch-icon.png';
 import faviconImage from '@assets/favicon.svg';
 import defaultOpenGraphImage from '@assets/opengraph-image.png';
-import { siteLang, siteRegion, siteTitle, siteTwitterId } from '../consts';
+import { siteTitle, siteTwitterId } from '../consts';
 import TheHeader from '@components/TheHeader.astro';
 import TheFooter from '@components/TheFooter.astro';
 
@@ -41,9 +41,11 @@ const canonicalURL = (() => {
   }
   return new URL(Astro.url.pathname, Astro.site);
 })();
+
+const lang = Astro.currentLocale ? Astro.currentLocale : 'ja';
 ---
 
-<html lang={siteLang}>
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -65,7 +67,7 @@ const canonicalURL = (() => {
     {canonicalURL && <meta property="og:url" content={canonicalURL} />}
     {description && <meta property="og:description" content={description} />}
     <meta property="og:site_name" content={siteTitle} />
-    <meta property="og:locale" content={`${siteLang}_${siteRegion}`} />
+    <meta property="og:locale" content={`${lang}_${lang.toUpperCase()}`} />
 
     <link rel="apple-touch-icon" href={appleTouchIconImage.src} />
     {canonicalURL && <link rel="canonical" href={canonicalURL} />}

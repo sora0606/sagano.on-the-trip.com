@@ -1,5 +1,61 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import IconExternal from '@assets/icon-external.svg';
+
+type Title = {
+  ja: string;
+  en: string;
+  'zh-cn': string;
+  ko: string;
+};
+
+const lang = Astro.currentLocale ? Astro.currentLocale : 'ja';
+
+const hpTitle: Title = {
+  ja: 'トロッコ列車 ホームページ',
+  en: 'Trolley Train Homepage',
+  'zh-cn': '无轨电车主页',
+  ko: '트로코 열차 홈페이지',
+};
+
+const langItems: { lang: string; label: Title }[] = [
+  {
+    lang: 'ja',
+    label: {
+      ja: '日本語',
+      en: 'Japanese',
+      'zh-cn': '日语',
+      ko: '일본어',
+    },
+  },
+  {
+    lang: 'en',
+    label: {
+      ja: '英語',
+      en: 'English',
+      'zh-cn': '英语',
+      ko: '영어',
+    },
+  },
+  {
+    lang: 'zh-cn',
+    label: {
+      ja: '中国語',
+      en: 'Chinese',
+      'zh-cn': '简体中文',
+      ko: '중국어',
+    },
+  },
+  {
+    lang: 'ko',
+    label: {
+      ja: '韓国語',
+      en: 'Korean',
+      'zh-cn': '韩语',
+      ko: '한국어',
+    },
+  },
+];
 ---
 
 <header class="pointer-events-none fixed left-0 top-0 z-[100] h-auto w-full">
@@ -13,14 +69,47 @@ import IconExternal from '@assets/icon-external.svg';
     <div class="size-auto">
       <ul class="flex h-auto w-full items-center justify-start">
         <li class="size-auto">
-          <a href="/" class="link pointer-events-auto block size-auto py-2.5 pl-2.5 pr-4 md:pr-12">
-            <p class="title-en-md text-nowrap text-white">Guide</p>
+          <a
+            href="#guide"
+            class="link pointer-events-auto block size-auto py-2.5 pl-2.5 pr-4 md:pr-12"
+            @click.prevent="scrollTo"
+          >
+            <p class="title-en-md text-nowrap">Guide</p>
           </a>
         </li>
-        <li class="size-auto">
-          <a href="/" class="link pointer-events-auto block size-auto px-4 py-2.5 md:pl-12 md:pr-5">
-            <p class="title-en-md text-nowrap text-white">Language</p>
-          </a>
+        <li
+          x-data="{ open: false }"
+          class="pointer-events-auto relative size-auto px-4 py-2.5 md:pl-12 md:pr-5"
+          @mouseenter="open = true"
+          @mouseleave="open = false"
+        >
+          <div class="link block size-auto cursor-pointer">
+            <p class="title-en-md text-nowrap">Language</p>
+          </div>
+          <ul
+            x-cloak
+            x-show="open"
+            x-transition:enter="transition-[transform,opacity] duration-300 ease-in-out"
+            x-transition:enter-start="translate-y-5 opacity-0"
+            x-transition:enter-end="translate-y-0 opacity-100"
+            x-transition:leave="transition-[transform,opacity] duration-300 ease-in-out"
+            x-transition:leave-start="translate-y-0 opacity-100"
+            x-transition:leave-end="translate-y-5 opacity-0"
+            class="absolute left-4 top-full z-[100] md:left-12"
+          >
+            {
+              langItems.map((item) => (
+                <li class="size-auto">
+                  <a
+                    href={getRelativeLocaleUrl(`${item.lang}`, '/')}
+                    class="link pointer-events-auto block size-auto py-2.5"
+                  >
+                    <p class="title-en-md text-nowrap">{item.label[lang as keyof Title]}</p>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
         </li>
       </ul>
     </div>
@@ -30,9 +119,9 @@ import IconExternal from '@assets/icon-external.svg';
         target="_blank"
         class="link pointer-events-auto flex size-auto items-center justify-start gap-x-1.5 p-2.5"
       >
-        <p class="title-2xs text-white">トロッコ列車 ホームページ</p>
+        <p class="title-2xs">{hpTitle[lang as keyof Title]}</p>
         <div class="h-auto w-2.5">
-          <img src={IconExternal.src} alt="" class="h-auto w-full text-white" />
+          <img src={IconExternal.src} alt="" class="h-auto w-full" />
         </div>
       </a>
     </div>

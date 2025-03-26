@@ -63,15 +63,14 @@ const autoGrid = plugin(
     });
 
     addComponents({
-      '.container': {
-        maxWidth: '100%',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        paddingLeft: '17.5px',
-        paddingRight: '17.5px',
-        '@screen md': {
-          paddingLeft: 'calc(100/1440*100vw)',
-          paddingRight: 'calc(100/1440*100vw)',
+      ".container": {
+        maxWidth: "100%",
+        paddingRight: "calc(20 / 16 * 1rem)",
+        paddingLeft: "calc(20 / 16 * 1rem)",
+
+        "@screen md": {
+          paddingRight: "calc(60 / 1440 * 100vw)",
+          paddingLeft: "calc(60 / 1440 * 100vw)",
         },
       },
     });
@@ -154,40 +153,6 @@ module.exports = {
         'strong-out': 'cubic-bezier(0.42, 0, 0, 1)',
         'heavy-in': 'cubic-bezier(1, 0, 0.9, 1)',
         'heavy-out': 'cubic-bezier(0.1, 0, 0, 1)',
-      },
-      keyframes: {
-        'marquee-sm-pc': {
-          '0%': {
-            transform: 'translate3d(0, 0, 0)',
-          },
-          '100%': {
-            transform: 'translate3d(calc(-100% - 10/1440*100vw), 0, 0)',
-          },
-        },
-        'marquee-sm-sp': {
-          '0%': {
-            transform: 'translate3d(0, 0, 0)',
-          },
-          '100%': {
-            transform: 'translate3d(calc(-100% - 10/375*100vw), 0, 0)',
-          },
-        },
-        'marquee-pc': {
-          '0%': {
-            transform: 'translate3d(0, 0, 0)',
-          },
-          '100%': {
-            transform: 'translate3d(calc(-100% - 20/1440*100vw), 0, 0)',
-          },
-        },
-        'marquee-sp': {
-          '0%': {
-            transform: 'translate3d(0, 0, 0)',
-          },
-          '100%': {
-            transform: 'translate3d(calc(-100% - max(10/1440*100vw, 10/16*1rem)), 0, 0)',
-          },
-        },
       },
     },
   },

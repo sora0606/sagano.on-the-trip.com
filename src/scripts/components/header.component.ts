@@ -14,6 +14,7 @@ Alpine.data('header', () => {
 
       this.$watch('open', async (value) => {
         void this.handleOpenChange(value);
+        // @ts-ignore
         value ? this.$store.lenis.instance.stop() : this.$store.lenis.instance.start();
       });
 
@@ -25,7 +26,9 @@ Alpine.data('header', () => {
       this.isOpened = value;
     },
 
+    // @ts-ignore
     get isScrolled() {
+      // @ts-ignore
       return this.scrollY - this.scrollYHistory > 0 && this.scrollY > this.$el.offsetHeight;
     },
 

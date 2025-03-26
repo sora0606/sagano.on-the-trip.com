@@ -1,6 +1,0 @@
-.wrapper {
-  box-sizing: content-box;
-  margin-inline: auto;
-  padding-inline: max(5vw, theme(spacing.4));
-  max-inline-size: 60rem;
-}

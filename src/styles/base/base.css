@@ -2,7 +2,7 @@
 
 html,
 body {
-  @apply kerning-none font-serif ip:text-[calc(16/375*100vw)] md:text-[calc(16/16*1rem)] 2xl:text-[calc(16/1440*100vw)];
+  @apply kerning-all font-serif ip:text-[calc(16/375*100vw)] md:text-[calc(16/16*1rem)] 2xl:text-[calc(16/1440*100vw)];
   width: 100%;
   max-width: 100vw;
   height: auto;

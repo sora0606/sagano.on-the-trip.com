@@ -1,8 +1,8 @@
 ---
-const { title, subTitle } = Astro.props;
+const { label, title } = Astro.props;
 ---
 
-<div class="c-title__section">
-  <p class="font-mplus c-title__section--subtitle" set:html={subTitle} />
-  <h2 class="font-en c-title__section--title" set:html={title} />
+<div class="flex flex-col items-start justify-start gap-y-2">
+  <p class="text-orange title-en-sm text-nowrap uppercase">( {label} )</p>
+  <h2 class="title-3xl" set:html={title} />
 </div>

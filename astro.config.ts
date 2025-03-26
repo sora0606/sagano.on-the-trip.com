@@ -9,12 +9,11 @@ import * as config from './config';
 // https://astro.build/config
 export default defineConfig({
   base: config.pathPrefix,
-  trailingSlash: 'never',
   outDir: `./dist${config.pathPrefix}`,
   site: 'https://www.frostix.co.jp/',
   i18n: {
     defaultLocale: 'ja',
-    locales: ['ja'],
+    locales: ['ja', 'en', 'zh-cn', 'ko'],
   },
   integrations: [mdx(), sitemap(), tailwind({ nesting: true })],
   vite: {

@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import { CTAItems } from '../consts';
+import { CTAItems } from '../../consts';
 import Layout from '@layouts/Layout.astro';
 import LayoutBaseContainer from '@components/LayoutBaseContainer.astro';
 import ButtonBase from '@components/ButtonBase.astro';
@@ -20,25 +20,25 @@ import StoryImage3 from '@assets/story-image-3.jpg';
 import TopImage from '@assets/top-image.jpg';
 
 const guideTexts = [
-  "トロッコ列車はなぜできたのか？",
-  "なぜ列車は断崖絶壁を走っているのか？<br>その苦難とは？",
-  "トロッコ列車が横を走る保津峡がなければ<br>京都は存在しなかった？",
+  "How did the Sagano Romantic Train come to be?",
+  "Why does the train travel along such a steep cliff? <br>What difficulties does this route create?",
+  "Would Kyoto have ever existed without the famous <br>sightseeing spot along the Sagano Romantic Train route, <br>the Hozukyō Gorge?",
 ]
 
 const StoryItems = [
   {
     thumbnail: StoryImage1,
-    title: 'トロッコ嵯峨駅～トロッコ嵐山駅<br>「乗り心地でわかるトロッコ列車のルーツとは？」',
+    title: 'Torokko Saga Station to Torokko Arashiyama Station: <br>The History of the Train You’ll Have to Ride to Learn',
     href: "/"
   },
   {
     thumbnail: StoryImage2,
-    title: 'トロッコ嵐山駅〜トロッコ保津峡駅<br>「保津峡がなければ京都は存在しなかった？」',
+    title: 'Torokko Arashiyama Station to Torokko Hozukyō Station: <br>Would Kyoto have ever existed without the Hozukyō Gorge? ',
     href: "/"
   },
   {
     thumbnail: StoryImage3,
-    title: 'トロッコ保津峡駅〜トロッコ亀岡駅<br>「断崖絶壁に鉄道を走らせるための苦難とは？」',
+    title: 'Torokko Hozukyō Station to Torokko Kameoka Station: <br>What difficulties come with getting a train to travel along a steep cliff?',
     href: "/"
   },
 ]
@@ -67,8 +67,8 @@ const StoryItems = [
       </div>
 
       <div class="absolute container bottom-0 left-0 w-full h-auto z-10 md:pb-[calc(46/1440*100vw)]">
-        <h1 class="title-5xl">その物語は、<br>トロッコ列車に乗らなければ<br>わからない</h1>
-        <p class="title-xs text-gray-base mt-5 md:mt-10">トロッコ列車に乗りながら体験する、<br class="md:hidden">歴史を走るオーディオガイド。</p>
+        <h1 class="title-5xl">In order to understand <br>the Sagano Romantic Train, <br>you’ll first have to ride it.</h1>
+        <p class="title-xs text-gray-base mt-5 md:mt-10">An audio guide that takes you through history as you travel aboard a scenic sightseeing train.</p>
       </div>
     </div>
 
@@ -203,8 +203,8 @@ const StoryItems = [
     </section>
 
     <section id="download" class="w-full h-auto mt-[calc(150/16*1rem)] md:mt-[calc(200/16*1rem)]">
-      <LayoutBaseContainer label="Download" title="アプリをダウンロード">
-        <p class="title-lg">現地で物語を聴くために<br>ON THE TRIPアプリをダウンロードしましょう</p>
+      <LayoutBaseContainer label="Download" title="Download the app">
+        <p class="title-lg">Download the ON THE TRIP app <br>to listen to these tales while seeing the sights with your own eyes.</p>
         <div class="w-full h-auto mt-[calc(30/16*1rem)] md:mt-10">
           <ul class="grid grid-cols-2 w-full h-auto gap-x-2 md:gap-x-5">
             {
@@ -218,7 +218,7 @@ const StoryItems = [
     </section>
 
     <section id="story" class="w-full h-auto mt-[calc(150/16*1rem)] md:mt-[calc(200/16*1rem)]">
-      <LayoutBaseContainer label="Story" title="物語をトロッコ列車に<br class='md:hidden'/>乗る前に聴いてみる">
+      <LayoutBaseContainer label="Story" title="Before Boarding the Sagano Romantic Train">
         <ul class="grid grid-cols-1 w-full h-auto gap-y-20 md:gap-y-[calc(70/16*1rem)]">
           {
             StoryItems.map((item, i) => (
@@ -229,7 +229,7 @@ const StoryItems = [
                   <div class="w-full h-auto">
                     <h3 class="title-xl" set:html={item.title}></h3>
                     <div class="w-full h-auto mt-[calc(30/16*1rem)] md:mt-10">
-                      <ButtonBase label="物語を聴く" href={item.href} target="_blank" />
+                      <ButtonBase label="Listen to This Tale" href={item.href} target="_blank" />
                     </div>
                   </div>
                   <div class="w-full md:w-[calc(382/784*100%)] h-auto aspect-[335/170] md:aspect-[382/190] overflow-hidden flex-[1_0_auto]">
@@ -261,13 +261,10 @@ const StoryItems = [
     </div>
 
     <section id="concept" class="w-full h-auto mt-[calc(60/16*1rem)] md:mt-[calc(150/16*1rem)] mb-10">
-      <LayoutBaseContainer label="Concept" title="音声ガイドで<br/>トロッコ列車の物語を聴く">
+      <LayoutBaseContainer label="Concept" title="Learn about the Sagano Romantic Train by listening to this audio guide.">
         <div class="w-full md:w-[calc(650/918*100%)] h-auto ml-auto">
           <p class="title-md">
-            ON THE TRIPの物語を聴くことで目の前の景色が大きく変わります。みなさんが普段乗り慣れている電車とは違う列車の乗り心地。トロッコ列車に乗りながらその違いを五感で体感し、ルーツを知ることで乗り心地も大きく変わります。<br>
-            <br>
-            物語は、トロッコ列車のルーツから始まり、さらに悠久の時代へと潜ります。この地に線路が敷かれるより遥か昔、保津川はある重要な物を運んでいました。それは何か。そして、江戸時代に起きた変化とは？実際の歴史を学びながら列車は進みます。<br>
-            そして時代は進み、明治時代に完成した線路を走る現在のトロッコ列車。その曲がりくねった道のりに秘められた血と汗の物語とは？風景を見ながら物語とともに列車を旅することで。見えていなかった景色が見えてきます。
+            Listening to stories by ON THE TRIP will strikingly change the sights you’ll encounter. Enjoy a ride that won’t be like your usual train ride. Board the Sagano Romantic Train and experience those differences using all five of your senses. You’ll find that your ride will change as you learn about the train’s history. Our story will take you to the beginnings of the Sagano Romantic Train all the way back to time immemorial. Long before tracks were ever laid upon these lands, the Hozugawa river was transporting something very important. What could that have been? And what changes occurred during the Edo period? The train will travel along a scenic route as you learn its history. We’ll then travel forward in time, when this train began running along the tracks completed during the Meiji period. What tales of blood and sweat are hidden along this winding route? By listening to these stories as you enjoy the sights aboard the train, you’ll be able to see things in a brand new light.
           </p>
         </div>
       </LayoutBaseContainer>

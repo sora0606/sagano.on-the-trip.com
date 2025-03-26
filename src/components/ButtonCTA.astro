@@ -1,0 +1,9 @@
+---
+const { label, ...props } = Astro.props;
+---
+
+<div class="w-full h-auto">
+  <a {...props} class="link w-full h-auto py-[calc(22/16*1rem)] md:py-[calc(30/16*1rem)] grid place-content-center rounded-full bg-black-base overflow-hidden">
+    <p class="title-en-lg text-nowrap">{label}</p>
+  </a>
+</div>

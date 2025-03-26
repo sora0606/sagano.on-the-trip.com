@@ -8,7 +8,7 @@
   letter-spacing: -0.04em;
 
   @screen md {
-    font-size: calc(56 / 16 * 1rem);
+    font-size: calc(56 / 1440 * 100vw);
   }
 }
 

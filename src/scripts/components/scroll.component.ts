@@ -5,6 +5,7 @@ import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
 
 Alpine.data("scroll", () => {
 	gsap.registerPlugin(ScrollToPlugin);
+  // @ts-ignore
 	let requestId = null;
 
 	return {
@@ -21,22 +22,27 @@ Alpine.data("scroll", () => {
 			});
 
 			//get scroll value
+      // @ts-ignore
 			lenis.on("scroll", ({ scroll, limit, velocity, direction, progress }) => {
 				this.scrollDirection = scroll > 200 && direction !== -1;
 			});
 
+      // @ts-ignore
 			function raf(time) {
 				lenis.raf(time);
 
+        // @ts-ignore
 				if (requestId) cancelAnimationFrame(requestId);
 				requestId = requestAnimationFrame(raf);
 			}
 
 			requestId = requestAnimationFrame(raf);
 
+      // @ts-ignore
 			this.$store.lenis.instance = lenis;
 		},
 		scrollTo(e: MouseEvent) {
+      // @ts-ignore
 			this.$store.lenis.instance.stop();
 			let href = (e.currentTarget as HTMLAnchorElement).getAttribute("href");
 
@@ -45,6 +51,7 @@ Alpine.data("scroll", () => {
 			}
 
 			if (href.startsWith("/")) {
+        // @ts-ignore
 				this.$store.pageLink.isLink = href.replace("/", "");
 				window.location.href = "/";
 				return;
@@ -59,6 +66,7 @@ Alpine.data("scroll", () => {
 				},
 				ease: "power2.inOut",
 				onComplete: () => {
+          // @ts-ignore
 					this.$store.lenis.instance.start();
 				},
 			});
