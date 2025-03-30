@@ -32,7 +32,7 @@ Alpine.data('scrollSticky', () => {
           invalidateOnRefresh: true,
           onUpdate: (self) => {
             this.direction = self.direction;
-            this.current = clamp(Math.floor(self.progress * this.total), 0, this.total - 1);
+            this.current = clamp(Math.floor(self.progress * this.total), 0, this.total);
             this.progress = self.progress * this.total - this.current;
             this.currentNext = this.current + (this.progress > 3 / 4 ? 1 : 0);
           },

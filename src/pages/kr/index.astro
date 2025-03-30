@@ -18,35 +18,28 @@ import StoryImage3 from '@assets/story-image-3.jpg';
 import TopImage from '@assets/top-image.jpg';
 
 const guideTexts = [
-  'How did the Sagano Romantic Train come to be?',
-  'Why does the train travel along such a steep cliff? <br>What difficulties does this route create?',
-  'Would Kyoto have ever existed without the famous <br>sightseeing spot along the Sagano Romantic Train route, <br>the Hozukyō Gorge?',
-];
-
-const guideTextsSP = [
-  'How did the Sagano Romantic Train <br>come to be?',
-  'Why does the train travel <br>along such a steep cliff? <br>What difficulties does this route create?',
-  'Would Kyoto have ever <br>existed without the famous <br>sightseeing spot along <br>the Sagano Romantic Train route, <br>the Hozukyō Gorge?',
+  '토롯코 열차는 왜 만들어졌을까?',
+  '왜 열차는 깎아지른 절벽 위를 달리고 있을까? <br>그 속에 담긴 고난은?',
+  '토롯코 열차가 옆을 따라 달리는 ‘호즈쿄(保津峡)’<br>가 없었다면 교토는 존재하지 않았을까?',
 ];
 
 const StoryItems = [
   {
     thumbnail: StoryImage1,
-    title:
-      'Torokko Saga Station to Torokko Arashiyama Station: <br>The History of the Train You’ll Have to Ride to Learn',
-    href: 'https://on-the-trip.net/indices/9986?locale=en',
+    title: '토롯코 사가역 ~ 토롯코 아라시야마역<br>"토롯코 열차의 시작은 어디서부터 였을까?"',
+    href: 'https://on-the-trip.net/indices/9998?locale=ko',
   },
   {
     thumbnail: StoryImage2,
     title:
-      'Torokko Arashiyama Station to Torokko Hozukyō Station: <br>Would Kyoto have ever existed without the Hozukyō Gorge? ',
-    href: 'https://on-the-trip.net/indices/9987?locale=en',
+      '토롯코 아라시야마역 ~ 토롯코 호즈쿄역<br>"호즈쿄가 없었다면, 교토는 존재하지 않았을까?"',
+    href: 'https://on-the-trip.net/indices/9999?locale=ko',
   },
   {
     thumbnail: StoryImage3,
     title:
-      'Torokko Hozukyō Station to Torokko Kameoka Station: <br>What difficulties come with getting a train to travel along a steep cliff?',
-    href: 'https://on-the-trip.net/indices/9988?locale=en',
+      '토롯코 호즈쿄역 ~ 토롯코 카메오카역<br>"가파른 절벽을 따라 철도를 놓기까지의 험난한 여정"',
+    href: 'https://on-the-trip.net/indices/10000?locale=ko',
   },
 ];
 ---
@@ -74,12 +67,10 @@ const StoryItems = [
         class="absolute container bottom-0 left-0 w-full h-auto z-10 md:pb-[calc(46/1440*100vw)]"
       >
         <h1 x-data="splitLabel" class="--title title-5xl">
-          In order to understand <br />the Sagano Romantic Train, <br />you’ll first have to ride
-          it.
+          이 이야기는 토롯코 <br />열차를 타야만 <br />알 수 있습니다.
         </h1>
         <p x-data="splitLabel(10)" class="--text title-xs text-gray-base mt-5 md:mt-10">
-          An audio guide that takes you through history as you travel aboard a scenic sightseeing
-          train.
+          토롯코 열차를 타며 듣는 역사를 달리는 오디오 가이드
         </p>
       </div>
     </div>
@@ -99,27 +90,7 @@ const StoryItems = [
 
           {
             guideTexts.map((text, i) => (
-              <div class="md:grid hidden absolute inset-0 place-content-center z-10 pointer-events-none">
-                <div
-                  x-data={`{ index: ${i} }`}
-                  class="effect-guide w-full h-auto text-center transition-opacity duration-300"
-                  x-bind:class="{ 'is-current': index === current, 'is-prev': index < current }"
-                >
-                  {text.split('<br>').map((t, j) => (
-                    <p
-                      class="--text title-2xl"
-                      style={`--index: ${j}; --total: ${text.split('<br>').length - 1};`}
-                      set:html={t}
-                    />
-                  ))}
-                </div>
-              </div>
-            ))
-          }
-
-          {
-            guideTextsSP.map((text, i) => (
-              <div class="md:hidden absolute inset-0 place-content-center z-10 pointer-events-none">
+              <div class="absolute inset-0 grid place-content-center z-10 pointer-events-none">
                 <div
                   x-data={`{ index: ${i} }`}
                   class="effect-guide w-full h-auto text-center transition-opacity duration-300"
@@ -183,7 +154,7 @@ const StoryItems = [
           class="absolute top-[calc(100svh+954/800*100svh)] right-0 md:right-[calc(60/1440*100%)] w-[calc(148/375*100%)] md:w-[calc(516/1440*100%)] h-auto aspect-[148/83] md:aspect-[516/354] opacity-90 z-0"
         >
           <div
-            data-parallax-scale="2"
+            data-parallax-scale="1"
             data-parallax-scale-center
             class="size-full overflow-hidden scale-[var(--parallax-scale)] transform-gpu"
           >
@@ -196,7 +167,7 @@ const StoryItems = [
           class="absolute top-[calc(100svh+1308/800*100svh)] left-0 md:left-[calc(70/1440*100%)] w-[calc(148/375*100%)] md:w-[calc(382/1440*100%)] h-auto aspect-[148/106] md:aspect-[382/280] opacity-70 md:opacity-90 z-0"
         >
           <div
-            data-parallax-scale="2"
+            data-parallax-scale="1"
             data-parallax-scale-center
             class="size-full overflow-hidden scale-[var(--parallax-scale)] transform-gpu"
           >
@@ -220,10 +191,9 @@ const StoryItems = [
     </section>
 
     <section id="download" class="w-full h-auto mt-[calc(150/16*1rem)] md:mt-[calc(200/16*1rem)]">
-      <LayoutBaseContainer label="Download" title="Download the app">
+      <LayoutBaseContainer label="Download" title="앱 다운로드">
         <p x-data="splitLabel(10)" class="effect-split-char title-lg" style=`--delay: 0ms;`>
-          Download the ON THE TRIP app <br />to listen to these tales while seeing the sights with
-          your own eyes.
+          현장에서 이야기를 듣고 싶으시다면 <br />ON THE TRIP 앱을 다운로드하세요.
         </p>
         <div class="w-full h-auto mt-[calc(30/16*1rem)] md:mt-10">
           <ul class="grid grid-cols-2 w-full h-auto gap-x-2 md:gap-x-5">
@@ -240,7 +210,10 @@ const StoryItems = [
     </section>
 
     <section id="story" class="w-full h-auto mt-[calc(150/16*1rem)] md:mt-[calc(200/16*1rem)]">
-      <LayoutBaseContainer label="Story" title="Before Boarding the Sagano Romantic Train">
+      <LayoutBaseContainer
+        label="Story"
+        title="토롯코 열차를 타기 전에, <br class='md:hidden'/>이 이야기를 들어보세요"
+      >
         <ul class="grid grid-cols-1 w-full h-auto gap-y-20 md:gap-y-[calc(70/16*1rem)]">
           {
             StoryItems.map((item, i) => (
@@ -283,7 +256,7 @@ const StoryItems = [
                         class="--fadein w-full h-auto mt-[calc(30/16*1rem)] md:mt-10"
                         style={`--delay: 100ms;`}
                       >
-                        <ButtonBase label="Listen to This Tale" type="button" />
+                        <ButtonBase label="이야기 듣기" type="button" />
                       </div>
                     </div>
                     <div
@@ -326,24 +299,23 @@ const StoryItems = [
       id="concept"
       class="w-full h-auto mt-[calc(60/16*1rem)] md:mt-[calc(150/16*1rem)] mb-10"
     >
-      <LayoutBaseContainer
-        label="Concept"
-        title="Learn about the Sagano Romantic Train by listening to this audio guide."
-      >
+      <LayoutBaseContainer label="Concept" title="오디오 가이드로 <br />듣는 토롯코 열차 이야기">
         <div class="w-full md:w-[calc(650/918*100%)] h-auto ml-auto">
           <p class="effect-fadein title-md" style="--delay: 0ms;">
-            Listening to stories by ON THE TRIP will strikingly change the sights you’ll encounter.
-            Enjoy a ride that won’t be like your usual train ride. Board the Sagano Romantic Train
-            and experience those differences using all five of your senses. You’ll find that your
-            ride will change as you learn about the train’s history. Our story will take you to the
-            beginnings of the Sagano Romantic Train all the way back to time immemorial. Long before
-            tracks were ever laid upon these lands, the Hozugawa river was transporting something
-            very important. What could that have been? And what changes occurred during the Edo
-            period? The train will travel along a scenic route as you learn its history. We’ll then
-            travel forward in time, when this train began running along the tracks completed during
-            the Meiji period. What tales of blood and sweat are hidden along this winding route? By
-            listening to these stories as you enjoy the sights aboard the train, you’ll be able to
-            see things in a brand new light.
+            ON THE TRIP에서 제공하는 이야기를 들으면 눈앞의 풍경이 다르게 보일지도 모릅니다.<br />
+            우리에게 익숙한 일반 열차와는 다른 승차감을 줍니다.<br />
+            토롯코 열차를 직접 타고 경험하며 오감으로 그 차이를 느끼고, 열차가 생겨난 배경을 알게 되면<br
+            />
+            그 승차감도 또 다른 의미로 다가올 것입니다.<br />
+            이야기는 토롯코 열차의 시작에서 출발해 더 오래 전의 역사로 이어집니다.<br />
+            이곳에 철도가 놓이기 전 아득한 옛날, 호즈강은 중요한 물자를 실어 나르는 역할을 했습니다.<br
+            />
+            그것은 무엇이었을까요? 그리고 에도 시대에 어떤 변화가 있었을까요?<br />
+            열차는 역사 속을 따라가며 그 답을 찾아갑니다.<br />
+            그리고 시대가 흘러, 메이지 시대에 완성된 철도를 달리는 지금의 토롯코 열차.<br />
+            이 굽이진 철길에는 어떤 피와 땀으로 이루어진 이야기들이 담겨 있을까요?<br />
+            풍경을 바라보며 이야기를 듣다 보면<br />
+            지금까지 보지 못했던 것들이 보일지도 모릅니다.
           </p>
         </div>
       </LayoutBaseContainer>

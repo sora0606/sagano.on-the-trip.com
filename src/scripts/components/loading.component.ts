@@ -25,7 +25,7 @@ Alpine.data('loading', () => {
           await sleep(300);
           this.$dispatch('loading:completed');
           document.body.classList.add('is-loaded');
-          await sleep(600);
+          await sleep(1600);
           this.$root.remove();
           // @ts-ignore
           this.$store.lenis.instance.start();

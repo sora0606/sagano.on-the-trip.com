@@ -10,10 +10,10 @@ import * as config from './config';
 export default defineConfig({
   base: config.pathPrefix,
   outDir: `./dist${config.pathPrefix}`,
-  site: 'https://www.frostix.co.jp/',
+  site: 'https://example.com',
   i18n: {
     defaultLocale: 'ja',
-    locales: ['ja', 'en', 'zh-cn', 'ko'],
+    locales: ['ja', 'en', 'sc', 'kr'],
   },
   integrations: [mdx(), sitemap(), tailwind({ nesting: true })],
   vite: {

@@ -43,9 +43,10 @@ const canonicalURL = (() => {
 })();
 
 const lang = Astro.currentLocale ? Astro.currentLocale : 'ja';
+const escapeLang = lang === 'sc' ? 'zh-hant' : lang === 'kr' ? 'ko' : lang;
 ---
 
-<html lang={lang}>
+<html lang={escapeLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -67,7 +68,7 @@ const lang = Astro.currentLocale ? Astro.currentLocale : 'ja';
     {canonicalURL && <meta property="og:url" content={canonicalURL} />}
     {description && <meta property="og:description" content={description} />}
     <meta property="og:site_name" content={siteTitle} />
-    <meta property="og:locale" content={`${lang}_${lang.toUpperCase()}`} />
+    <meta property="og:locale" content={`${escapeLang}_${escapeLang.toUpperCase()}`} />
 
     <link rel="apple-touch-icon" href={appleTouchIconImage.src} />
     {canonicalURL && <link rel="canonical" href={canonicalURL} />}
@@ -77,7 +78,7 @@ const lang = Astro.currentLocale ? Astro.currentLocale : 'ja';
   </head>
 
   <body x-data="scroll" class="min-h-svh">
-    <div x-data="loading" class="c-effect__loading"></div>
+    <div x-data="loading" class="effect-loading"></div>
 
     <TheHeader />
     <slot />

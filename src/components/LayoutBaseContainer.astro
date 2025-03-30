@@ -1,15 +1,22 @@
 ---
-import TitleSection from "./TitleSection.astro";
+import TitleSection from './TitleSection.astro';
 
 const { label, title } = Astro.props;
 ---
 
 <div class="container w-full h-auto">
-  <div class="flex lg:flex-row flex-col justify-start items-start w-full h-auto gap-x-[calc(100/1320*100%)] gap-y-10">
+  <div
+    class="flex lg:flex-row flex-col justify-start items-start w-full h-auto gap-x-[calc(100/1320*100%)] gap-y-10"
+  >
     <div class="w-full h-auto">
       <TitleSection label={label} title={title} />
     </div>
-    <div class="w-full lg:w-[calc(918/1320*100%)] h-auto flex-[1_0_auto]">
+    <div
+      x-data="{ action: false }"
+      x-intersect:enter.once="action = true"
+      class="w-full lg:w-[calc(918/1320*100%)] h-auto flex-[1_0_auto]"
+      x-bind:class="{ 'is-active': action }"
+    >
       <slot />
     </div>
   </div>

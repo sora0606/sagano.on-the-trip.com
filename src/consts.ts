@@ -6,10 +6,10 @@ export const siteTwitterId = 'sdenv_dev';
 export const CTAItems = [
   {
     label: 'iOS App',
-    href: '/',
+    href: 'https://apps.apple.com/jp/app/id1221976012',
   },
   {
     label: 'Android App',
-    href: '/',
+    href: 'https://play.google.com/store/apps/details?id=com.onthetrip.app&hl=ja',
   },
 ];

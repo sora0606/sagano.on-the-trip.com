@@ -8,3 +8,141 @@
     }
   }
 }
+
+.link-cta {
+  & .--line {
+    stroke-dashoffset: 310%;
+    stroke-dasharray: 310%;
+    transition: stroke-dashoffset 800ms theme(transitionTimingFunction.slow-out);
+  }
+
+  & .--label {
+    @apply overflow-hidden;
+
+    & .char {
+      @apply relative translate-y-[110%];
+
+      & [data-char]::before {
+        @apply absolute left-0 top-0 -translate-y-[110%] content-[attr(data-char)];
+      }
+    }
+  }
+
+  @screen lg {
+    &.is-hover {
+      & .--line {
+        stroke-dashoffset: 0;
+        transition: stroke-dashoffset 600ms theme(transitionTimingFunction.slow-out);
+      }
+
+      & .--label {
+        & .char {
+          @apply translate-y-0;
+          transition: transform 800ms theme(transitionTimingFunction.expo-out);
+        }
+      }
+    }
+  }
+}
+
+.link-button {
+  & .--circle {
+    @apply opacity-30;
+    transition: opacity 300ms theme(transitionTimingFunction.sine-out);
+  }
+
+  & .--label {
+    @apply overflow-hidden;
+
+    & .char {
+      @apply relative translate-y-[110%];
+
+      & [data-char]::before {
+        @apply absolute left-0 top-0 -translate-y-[110%] content-[attr(data-char)];
+      }
+    }
+  }
+
+  @screen lg {
+    .is-hover &,
+    &.is-hover {
+      & .--circle {
+        @apply opacity-100;
+      }
+
+      & .--label {
+        & .char {
+          @apply translate-y-0;
+          transition: transform 800ms theme(transitionTimingFunction.expo-out);
+        }
+      }
+    }
+  }
+}
+
+.link-nav {
+  & .--label {
+    @apply overflow-hidden;
+
+    & .char {
+      @apply relative translate-y-[110%];
+
+      & [data-char]::before {
+        @apply absolute left-0 top-0 -translate-y-[110%] content-[attr(data-char)];
+      }
+    }
+  }
+
+  @screen lg {
+    &.is-hover {
+      & .--label {
+        & .char {
+          @apply translate-y-0;
+          transition: transform 800ms theme(transitionTimingFunction.expo-out);
+        }
+      }
+    }
+  }
+}
+
+.link-nav-sub {
+  & .--label {
+    @apply relative size-fit pb-1;
+
+    &::before {
+      @apply absolute bottom-0 left-0 w-full h-px bg-white scale-x-0 origin-right content-[''];
+      transition: transform 800ms theme(transitionTimingFunction.slow-out);
+    }
+  }
+
+  @screen lg {
+    &.is-hover {
+      & .--label {
+        &::before {
+          @apply scale-x-100 origin-left;
+          transition: transform 400ms theme(transitionTimingFunction.slow-out);
+        }
+      }
+    }
+  }
+}
+
+.link-image {
+  @apply scale-100;
+  transition: transform 600ms theme(transitionTimingFunction.slow-out);
+
+  & .--inner {
+    @apply scale-100;
+    transition: transform 600ms theme(transitionTimingFunction.slow-out);
+  }
+
+  @screen lg {
+    .is-hover & {
+      @apply scale-90;
+
+      & .--inner {
+        @apply scale-125;
+      }
+    }
+  }
+}

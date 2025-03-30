@@ -1,6 +1,4 @@
 ---
-import { getCollection } from 'astro:content';
-import { getRelativeLocaleUrl } from 'astro:i18n';
 import { CTAItems } from '../consts';
 import Layout from '@layouts/Layout.astro';
 import LayoutBaseContainer from '@components/LayoutBaseContainer.astro';
@@ -20,70 +18,74 @@ import StoryImage3 from '@assets/story-image-3.jpg';
 import TopImage from '@assets/top-image.jpg';
 
 const guideTexts = [
-  "トロッコ列車はなぜできたのか？",
-  "なぜ列車は断崖絶壁を走っているのか？<br>その苦難とは？",
-  "トロッコ列車が横を走る保津峡がなければ<br>京都は存在しなかった？",
-]
+  'トロッコ列車はなぜできたのか？',
+  'なぜ列車は断崖絶壁を走っているのか？<br>その苦難とは？',
+  'トロッコ列車が横を走る保津峡がなければ<br>京都は存在しなかった？',
+];
 
 const StoryItems = [
   {
     thumbnail: StoryImage1,
     title: 'トロッコ嵯峨駅～トロッコ嵐山駅<br>「乗り心地でわかるトロッコ列車のルーツとは？」',
-    href: "/"
+    href: 'https://on-the-trip.net/indices/9857?locale=ja',
   },
   {
     thumbnail: StoryImage2,
     title: 'トロッコ嵐山駅〜トロッコ保津峡駅<br>「保津峡がなければ京都は存在しなかった？」',
-    href: "/"
+    href: 'https://on-the-trip.net/indices/9858?locale=ja',
   },
   {
     thumbnail: StoryImage3,
     title: 'トロッコ保津峡駅〜トロッコ亀岡駅<br>「断崖絶壁に鉄道を走らせるための苦難とは？」',
-    href: "/"
+    href: 'https://on-the-trip.net/indices/9859?locale=ja',
   },
-]
+];
 ---
 
 <Layout isHome tagline="AstroとWebflow CMS APIを活用した静的サイト開発テンプレート。">
   <main>
     <div
       x-data="parallax"
-      class="relative w-full h-[calc((540+110)/16*1rem)] md:h-lvh md:max-h-[calc(800/1440*100vw)] overflow-hidden pb-[calc(110/16*1rem)] md:pb-0"
+      class="effect-fv relative w-full h-[calc((540+110)/16*1rem)] md:h-lvh md:max-h-[calc(800/1440*100vw)] overflow-hidden pb-[calc(110/16*1rem)] md:pb-0"
     >
       <div
         data-parallax="-0.2"
-        class="absolute top-0 left-0 w-full h-[calc(540/16*1rem)] md:h-[calc(580/800*100%)] overflow-hidden translate-y-[var(--parallax-y)] transform-gpu"
+        class="--thumbnail absolute top-0 left-0 w-full h-[calc(540/16*1rem)] md:h-[calc(580/800*100%)] overflow-hidden translate-y-[var(--parallax-y)] transform-gpu"
       >
-        <picture>
-          <source media="(min-width: 768px)" srcset={KV.src} type="image/jpeg" />
-          <source srcset={KVSP.src} type="image/jpeg" />
-          <img
-            data-parallax="0.4"
-            src={KV.src}
-            alt=""
-            class="translate-y-[var(--parallax-y)] transform-gpu size-full object-cover"
-          />
-        </picture>
+        <div data-parallax="0.4" class="size-full translate-y-[var(--parallax-y)] transform-gpu">
+          <picture>
+            <source media="(min-width: 768px)" srcset={KV.src} type="image/jpeg" />
+            <source srcset={KVSP.src} type="image/jpeg" />
+            <img src={KV.src} alt="" class="--image size-full object-cover" />
+          </picture>
+        </div>
       </div>
 
-      <div class="absolute container bottom-0 left-0 w-full h-auto z-10 md:pb-[calc(46/1440*100vw)]">
-        <h1 class="title-5xl">その物語は、<br>トロッコ列車に乗らなければ<br>わからない</h1>
-        <p class="title-xs text-gray-base mt-5 md:mt-10">トロッコ列車に乗りながら体験する、<br class="md:hidden">歴史を走るオーディオガイド。</p>
+      <div
+        class="absolute container bottom-0 left-0 w-full h-auto z-10 md:pb-[calc(46/1440*100vw)]"
+      >
+        <h1 x-data="splitLabel" class="--title title-5xl">
+          その物語は、<br />トロッコ列車に乗らなければ<br />わからない
+        </h1>
+        <p x-data="splitLabel(10)" class="--text title-xs text-gray-base mt-5 md:mt-10">
+          トロッコ列車に乗りながら体験する、<br class="md:hidden" />歴史を走るオーディオガイド。
+        </p>
       </div>
     </div>
 
-    <section
-      id="guide"
-      class="w-full h-auto mt-[calc(109/16*1rem)]"
-    >
+    <section id="guide" class="w-full h-auto mt-[calc(109/16*1rem)]">
       <div
         x-data="scrollSticky"
         data-total={guideTexts.length}
         class="relative w-full"
         x-bind:class="{ 'is-reverse': direction < 0 }"
-        style={`height: calc(150svh*${guideTexts.length})`}
+        x-bind:style="`--progress: ${progress}; height: calc(150svh * ${total})`"
       >
         <div class="sticky top-0 w-full h-dvh z-10">
+          <span
+            class="pointer-events-none absolute inset-0 -z-10 [background:linear-gradient(0deg,rgba(18,18,18,0.8)_0%,rgba(18,18,18,0.0)_50%,rgba(18,18,18,0.8)_100%);]"
+          ></span>
+
           {
             guideTexts.map((text, i) => (
               <div class="absolute inset-0 grid place-content-center z-10 pointer-events-none">
@@ -92,124 +94,112 @@ const StoryItems = [
                   class="effect-guide w-full h-auto text-center transition-opacity duration-300"
                   x-bind:class="{ 'is-current': index === current, 'is-prev': index < current }"
                 >
-                  {
-                    text.split('<br>').map((t, j) => (
-                      <p class="--text title-2xl" style={`--index: ${j}; --total: ${text.split('<br>').length - 1};`} set:html={t}></p>
-                    ))
-                  }
+                  {text.split('<br>').map((t, j) => (
+                    <p
+                      class="--text title-2xl"
+                      style={`--index: ${j}; --total: ${text.split('<br>').length - 1};`}
+                      set:html={t}
+                    />
+                  ))}
                 </div>
-                </div>
-              ))
-            }
+              </div>
+            ))
+          }
         </div>
 
         <div
           x-data="parallax"
+          data-parallax-mobile
           class="absolute top-[100svh] right-0 w-[calc(148/375*100%)] md:w-[calc(382/1440*100%)] h-auto aspect-[148/179] md:aspect-[382/462] opacity-70 z-0"
         >
           <div
-            data-parallax="-0.3"
-            class="size-full overflow-hidden translate-y-[var(--parallax-y)] transform-gpu"
+            data-parallax-scale="2"
+            data-parallax-scale-center
+            class="size-full overflow-hidden scale-[var(--parallax-scale)] transform-gpu"
           >
-            <img
-              data-parallax="0.1"
-              src={GuideImage1.src}
-              alt=""
-              class="size-full object-cover translate-y-[var(--parallax-y)] transform-gpu scale-[1.2]"
-            />
+            <img src={GuideImage1.src} alt="" class="size-full object-cover" />
           </div>
         </div>
         <div
           x-data="parallax"
+          data-parallax-mobile
           class="absolute top-[calc(100svh+184/800*100svh)] left-0 md:left-[calc(60/1440*100%)] w-[calc(89/375*100%)] md:w-[calc(248/1440*100%)] h-auto aspect-[89/106] md:aspect-[248/294] opacity-60 z-0"
         >
           <div
-            data-parallax="-0.2"
-            class="size-full overflow-hidden translate-y-[var(--parallax-y)] transform-gpu"
+            data-parallax-scale="2"
+            data-parallax-scale-center
+            class="size-full overflow-hidden scale-[var(--parallax-scale)] transform-gpu"
           >
-            <img
-              data-parallax="0.1"
-              src={GuideImage2.src}
-              alt=""
-              class="size-full object-cover translate-y-[var(--parallax-y)] transform-gpu scale-[1.2]"
-            />
+            <img src={GuideImage2.src} alt="" class="size-full object-cover" />
           </div>
         </div>
         <div
           x-data="parallax"
+          data-parallax-mobile
           class="absolute top-[calc(100svh+692/800*100svh)] left-[calc(120/375*100%)] md:left-[calc(328/1440*100%)] w-[calc(97/375*100%)] md:w-[calc(247/1440*100%)] h-auto aspect-[97/110] md:aspect-[247/280] opacity-70 md:opacity-90 z-0"
         >
           <div
-            data-parallax="-0.5"
-            class="size-full overflow-hidden translate-y-[var(--parallax-y)] transform-gpu"
+            data-parallax-scale="2"
+            data-parallax-scale-center
+            class="size-full overflow-hidden scale-[var(--parallax-scale)] transform-gpu"
           >
-            <img
-              data-parallax="0.1"
-              src={GuideImage3.src}
-              alt=""
-              class="size-full object-cover translate-y-[var(--parallax-y)] transform-gpu scale-[1.2]"
-            >
+            <img src={GuideImage3.src} alt="" class="size-full object-cover" />
           </div>
         </div>
         <div
           x-data="parallax"
+          data-parallax-mobile
           class="absolute top-[calc(100svh+954/800*100svh)] right-0 md:right-[calc(60/1440*100%)] w-[calc(148/375*100%)] md:w-[calc(516/1440*100%)] h-auto aspect-[148/83] md:aspect-[516/354] opacity-90 z-0"
         >
           <div
-            data-parallax="-0.2"
-            class="size-full overflow-hidden translate-y-[var(--parallax-y)] transform-gpu"
+            data-parallax-scale="1"
+            data-parallax-scale-center
+            class="size-full overflow-hidden scale-[var(--parallax-scale)] transform-gpu"
           >
-            <img
-              data-parallax="0.1"
-              src={GuideImage4.src}
-              alt=""
-              class="size-full object-cover translate-y-[var(--parallax-y)] transform-gpu scale-[1.2]"
-            >
+            <img src={GuideImage4.src} alt="" class="size-full object-cover" />
           </div>
         </div>
         <div
           x-data="parallax"
+          data-parallax-mobile
           class="absolute top-[calc(100svh+1308/800*100svh)] left-0 md:left-[calc(70/1440*100%)] w-[calc(148/375*100%)] md:w-[calc(382/1440*100%)] h-auto aspect-[148/106] md:aspect-[382/280] opacity-70 md:opacity-90 z-0"
         >
           <div
-            data-parallax="-0.4"
-            class="size-full overflow-hidden translate-y-[var(--parallax-y)] transform-gpu"
+            data-parallax-scale="1"
+            data-parallax-scale-center
+            class="size-full overflow-hidden scale-[var(--parallax-scale)] transform-gpu"
           >
-            <img
-              data-parallax="0.1"
-              src={GuideImage5.src}
-              alt=""
-              class="size-full object-cover translate-y-[var(--parallax-y)] transform-gpu scale-[1.2]"
-            >
+            <img src={GuideImage5.src} alt="" class="size-full object-cover" />
           </div>
         </div>
         <div
           x-data="parallax"
+          data-parallax-mobile
           class="absolute top-[calc(100svh+1579/800*100svh)] right-[calc(20/375*100%)] md:right-[calc(194/1440*100%)] w-[calc(97/375*100%)] md:w-[calc(248/1440*100%)] h-auto aspect-[97/110] md:aspect-[248/294] opacity-40 md:opacity-70 z-0"
         >
           <div
-            data-parallax="-0.3"
-            class="size-full overflow-hidden translate-y-[var(--parallax-y)] transform-gpu"
+            data-parallax-scale="2"
+            data-parallax-scale-center
+            class="size-full overflow-hidden scale-[var(--parallax-scale)] transform-gpu"
           >
-            <img
-              data-parallax="0.1"
-              src={GuideImage6.src}
-              alt=""
-              class="size-full object-cover translate-y-[var(--parallax-y)] transform-gpu scale-[1.2]"
-            >
-        </div>
+            <img src={GuideImage6.src} alt="" class="size-full object-cover" />
+          </div>
         </div>
       </div>
     </section>
 
     <section id="download" class="w-full h-auto mt-[calc(150/16*1rem)] md:mt-[calc(200/16*1rem)]">
       <LayoutBaseContainer label="Download" title="アプリをダウンロード">
-        <p class="title-lg">現地で物語を聴くために<br>ON THE TRIPアプリをダウンロードしましょう</p>
+        <p x-data="splitLabel(10)" class="effect-split-char title-lg" style=`--delay: 0ms;`>
+          現地で物語を聴くために<br />ON THE TRIPアプリをダウンロードしましょう
+        </p>
         <div class="w-full h-auto mt-[calc(30/16*1rem)] md:mt-10">
           <ul class="grid grid-cols-2 w-full h-auto gap-x-2 md:gap-x-5">
             {
-              CTAItems.map((item) => (
-                <ButtonCTA label={item.label} href={item.href} target="_blank" />
+              CTAItems.map((item, i) => (
+                <li class="effect-fadein w-full h-auto" style={`--delay: ${i * 100}ms;`}>
+                  <ButtonCTA label={item.label} href={item.href} target="_blank" />
+                </li>
               ))
             }
           </ul>
@@ -218,24 +208,67 @@ const StoryItems = [
     </section>
 
     <section id="story" class="w-full h-auto mt-[calc(150/16*1rem)] md:mt-[calc(200/16*1rem)]">
-      <LayoutBaseContainer label="Story" title="物語をトロッコ列車に<br class='md:hidden'/>乗る前に聴いてみる">
+      <LayoutBaseContainer
+        label="Story"
+        title="物語をトロッコ列車に<br class='md:hidden'/>乗る前に聴いてみる"
+      >
         <ul class="grid grid-cols-1 w-full h-auto gap-y-20 md:gap-y-[calc(70/16*1rem)]">
           {
             StoryItems.map((item, i) => (
-              <li class="relative flex md:flex-row flex-col justify-between items-start w-full h-auto pt-5 gap-y-5">
-                <span class="absolute top-0 left-0 w-full h-px border-custom-dashed text-white opacity-30 pointer-events-none"></span>
-                <p class="title-en-xl text-nowrap">0{i + 1}</p>
-                <div class="w-full md:w-[calc(784/918*100%)] h-auto flex md:flex-row flex-col justify-start items-start gap-y-10 gap-x-4">
-                  <div class="w-full h-auto">
-                    <h3 class="title-xl" set:html={item.title}></h3>
-                    <div class="w-full h-auto mt-[calc(30/16*1rem)] md:mt-10">
-                      <ButtonBase label="物語を聴く" href={item.href} target="_blank" />
+              <li
+                x-data="{ action: false }"
+                x-intersect:enter.once="action = true"
+                class="effect-item w-full h-auto"
+                x-bind:class="{ 'is-active': action }"
+              >
+                <a
+                  x-data="hover"
+                  x-on:mouseenter="rollEnter"
+                  x-on:mouseleave="rollLeave"
+                  data-enter-time="800"
+                  data-leave-time="300"
+                  href={item.href}
+                  class="flex md:flex-row flex-col justify-between items-start w-full h-auto pt-5 gap-y-5 relative"
+                  target="_blank"
+                >
+                  <span
+                    class="--line absolute top-0 left-0 w-full h-px border-custom-dashed text-white opacity-30 pointer-events-none"
+                    style={`--delay: 0ms;`}
+                  />
+                  <p
+                    x-data="splitLabel"
+                    class="--char title-en-xl text-nowrap"
+                    style={`--delay: 0ms;`}
+                  >
+                    0{i + 1}
+                  </p>
+                  <div class="w-full md:w-[calc(784/918*100%)] h-auto flex md:flex-row flex-col justify-start items-start gap-y-10 gap-x-4">
+                    <div class="w-full h-auto">
+                      <h3
+                        x-data="splitLabel(10)"
+                        class="--char title-xl"
+                        style={`--delay: 50ms;`}
+                        set:html={item.title}
+                      />
+                      <div
+                        class="--fadein w-full h-auto mt-[calc(30/16*1rem)] md:mt-10"
+                        style={`--delay: 100ms;`}
+                      >
+                        <ButtonBase label="物語を聴く" type="button" />
+                      </div>
+                    </div>
+                    <div
+                      class="--image w-full md:w-[calc(382/784*100%)] h-auto aspect-[335/170] md:aspect-[382/190] flex-[1_0_auto]"
+                      style={`--delay: 150ms;`}
+                    >
+                      <div class="link-image size-full overflow-hidden">
+                        <div class="--inner size-full">
+                          <img src={item.thumbnail.src} alt="" class="size-full object-cover" />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="w-full md:w-[calc(382/784*100%)] h-auto aspect-[335/170] md:aspect-[382/190] overflow-hidden flex-[1_0_auto]">
-                    <img src={item.thumbnail.src} alt="" class="size-full object-cover" />
-                  </div>
-                </div>
+                </a>
               </li>
             ))
           }
@@ -256,17 +289,23 @@ const StoryItems = [
           src={TopImage.src}
           alt=""
           class="size-full object-cover translate-y-[var(--parallax-y)] transform-gpu scale-110"
-        >
+        />
       </div>
     </div>
 
-    <section id="concept" class="w-full h-auto mt-[calc(60/16*1rem)] md:mt-[calc(150/16*1rem)] mb-10">
+    <section
+      id="concept"
+      class="w-full h-auto mt-[calc(60/16*1rem)] md:mt-[calc(150/16*1rem)] mb-10"
+    >
       <LayoutBaseContainer label="Concept" title="音声ガイドで<br/>トロッコ列車の物語を聴く">
         <div class="w-full md:w-[calc(650/918*100%)] h-auto ml-auto">
-          <p class="title-md">
-            ON THE TRIPの物語を聴くことで目の前の景色が大きく変わります。みなさんが普段乗り慣れている電車とは違う列車の乗り心地。トロッコ列車に乗りながらその違いを五感で体感し、ルーツを知ることで乗り心地も大きく変わります。<br>
-            <br>
-            物語は、トロッコ列車のルーツから始まり、さらに悠久の時代へと潜ります。この地に線路が敷かれるより遥か昔、保津川はある重要な物を運んでいました。それは何か。そして、江戸時代に起きた変化とは？実際の歴史を学びながら列車は進みます。<br>
+          <p class="effect-fadein title-md" style="--delay: 0ms;">
+            ON THE
+            TRIPの物語を聴くことで目の前の景色が大きく変わります。みなさんが普段乗り慣れている電車とは違う列車の乗り心地。トロッコ列車に乗りながらその違いを五感で体感し、ルーツを知ることで乗り心地も大きく変わります。<br
+            />
+            <br />
+            物語は、トロッコ列車のルーツから始まり、さらに悠久の時代へと潜ります。この地に線路が敷かれるより遥か昔、保津川はある重要な物を運んでいました。それは何か。そして、江戸時代に起きた変化とは？実際の歴史を学びながら列車は進みます。<br
+            />
             そして時代は進み、明治時代に完成した線路を走る現在のトロッコ列車。その曲がりくねった道のりに秘められた血と汗の物語とは？風景を見ながら物語とともに列車を旅することで。見えていなかった景色が見えてきます。
           </p>
         </div>

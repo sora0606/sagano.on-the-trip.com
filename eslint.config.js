@@ -1,4 +1,3 @@
-import js from '@eslint/js';
 import astro from 'eslint-plugin-astro';
 import tailwindcss from 'eslint-plugin-tailwindcss';
 import ts from 'typescript-eslint';
@@ -7,12 +6,14 @@ import ts from 'typescript-eslint';
 export default [
   // globally ignoring
   {
-    ignores: ['dist/', '.astro/'],
+    ignores: ['dist/', '*.astro/'],
   },
 
-  js.configs.recommended,
-
-  ...ts.configs.recommended,
+  {
+    linterOptions: {
+      reportUnusedDisableDirectives: 'warn',
+    },
+  },
   ...ts.configs.stylistic,
   {
     rules: {
@@ -28,6 +29,7 @@ export default [
     rules: {
       // use prettier-plugin-tailwindcss for class sorting
       'tailwindcss/classnames-order': 'off',
+      'tailwindcss/no-custom-classname': 'off',
     },
   },
 ];

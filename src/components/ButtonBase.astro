@@ -1,12 +1,37 @@
 ---
-const { label, orenge, ...props } = Astro.props;
+const { label, type, ...props } = Astro.props;
 ---
 
-<div class="size-fit">
-  <a
-    {...props}
-    class="border-gray-dark link block size-auto overflow-hidden rounded-full border border-solid px-5 py-1"
-  >
-    <p class="title-sm">{label}</p>
-  </a>
-</div>
+{
+  type !== 'button' ? (
+    <div class="size-fit">
+      <a
+        x-data="hover"
+        x-on:mouseenter="rollEnter"
+        x-on:mouseleave="rollLeave"
+        data-enter-time="800"
+        data-leave-time="300"
+        {...props}
+        class="link-button relative block size-auto overflow-hidden px-5 py-1"
+      >
+        <span class="--circle absolute inset-0 z-0 pointer-events-none border border-solid border-white opacity-30 rounded-full" />
+        <p x-data="splitLabel" class="--label title-sm">
+          {label}
+        </p>
+      </a>
+    </div>
+  ) : (
+    <div class="size-fit">
+      <button
+        type="button"
+        {...props}
+        class="link-button relative block size-auto overflow-hidden px-5 py-1"
+      >
+        <span class="--circle absolute inset-0 z-0 pointer-events-none border border-solid border-white opacity-30 rounded-full" />
+        <p x-data="splitLabel" class="--label title-sm">
+          {label}
+        </p>
+      </button>
+    </div>
+  )
+}

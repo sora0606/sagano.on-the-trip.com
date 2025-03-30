@@ -2,8 +2,8 @@
 type Title = {
   ja: string;
   en: string;
-  'zh-cn': string;
-  ko: string;
+  sc: string;
+  kr: string;
 };
 
 const lang = Astro.currentLocale ? Astro.currentLocale : 'ja';
@@ -11,23 +11,43 @@ const lang = Astro.currentLocale ? Astro.currentLocale : 'ja';
 const title: Title = {
   ja: 'トロッコ列車の物語は、<br />線路とともに続くよ、<br class="md:hidden" />どこまでも。',
   en: 'The stories of the <br />Sagano Romantic train <br />will continue on forever, <br />along with the railroad.',
-  'zh-cn': '岚山小火车的故事，<br />将与铁道一起，<br class="md:hidden" />一直延续下去！',
-  ko: '토롯코 열차의 이야기는 <br />선로를 따라 .<br class="md:hidden" />계속 이어집니다.',
+  sc: '岚山小火车的故事，<br />将与铁道一起，<br class="md:hidden" />一直延续下去！',
+  kr: '토롯코 열차의 이야기는 <br />선로를 따라 .<br class="md:hidden" />계속 이어집니다.',
 };
 ---
 
 <footer
-  class="h-[calc(788/16*1rem)] w-full overflow-hidden px-[calc(18/16*1rem)] pb-[calc(78/16*1rem)] md:h-[calc(780/16*1rem)] md:px-[calc(58/1440*100vw)] md:pb-0"
+  x-data="{ action: false }"
+  x-intersect:enter.half.once="action = true"
+  class="h-svh w-full overflow-hidden px-[calc(18/16*1rem)] pb-[calc(78/16*1rem)] md:h-[calc(780/16*1rem)] md:px-[calc(58/1440*100vw)] md:pb-0"
+  x-bind:class="{ 'is-active': action }"
 >
   <div class="relative flex size-full items-center justify-center">
-    <p class="title-4xl text-nowrap text-center" set:html={title[lang as keyof Title]} />
+    <p
+      x-data="splitLabel"
+      class="effect-split-char title-4xl text-nowrap text-center"
+      set:html={title[lang as keyof Title]}
+      style={`--delay: 0ms;`}
+    />
 
     <div class="absolute left-0 top-1/2 z-10 size-auto -translate-y-1/2">
-      <p class="title-en-xs -scale-100 text-nowrap text-gray-base vertical-rl">199009</p>
+      <p
+        x-data="splitLabel"
+        class="effect-split-char title-en-xs -scale-100 text-nowrap text-gray-base vertical-rl"
+        style={`--delay: 0ms;`}
+      >
+        199009
+      </p>
     </div>
 
     <div class="absolute right-0 top-1/2 z-10 size-auto -translate-y-1/2">
-      <p class="title-en-xs text-nowrap text-gray-base vertical-rl">199009</p>
+      <p
+        x-data="splitLabel"
+        class="effect-split-char title-en-xs text-nowrap text-gray-base vertical-rl"
+        style={`--delay: 0ms;`}
+      >
+        199009
+      </p>
     </div>
   </div>
 </footer>

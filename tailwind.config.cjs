@@ -153,6 +153,7 @@ module.exports = {
         'strong-out': 'cubic-bezier(0.42, 0, 0, 1)',
         'heavy-in': 'cubic-bezier(1, 0, 0.9, 1)',
         'heavy-out': 'cubic-bezier(0.1, 0, 0, 1)',
+        'slow-out': 'cubic-bezier(0.215, 0.61, 0.355, 1)',
       },
     },
   },

@@ -1,11 +1,15 @@
 .effect-guide {
   & .--text {
     @apply translate-y-[3em] opacity-0;
-    transition: transform 500ms theme(transitionTimingFunction.quad-out), opacity 500ms ease-out;
+    transition:
+      transform 600ms theme(transitionTimingFunction.slow-out),
+      opacity 600ms ease-out;
     transition-delay: calc(var(--index) * 100ms);
 
     .is-reverse & {
-      transition: transform 500ms theme(transitionTimingFunction.quad-out), opacity 500ms ease-out;
+      transition:
+        transform 600ms theme(transitionTimingFunction.slow-out),
+        opacity 600ms ease-out;
       transition-delay: calc((var(--total) - var(--index)) * 100ms);
     }
   }
@@ -13,11 +17,15 @@
   &.is-current {
     & .--text {
       @apply translate-y-0 opacity-100;
-      transition: transform 500ms theme(transitionTimingFunction.quad-out), opacity 500ms ease-out;
+      transition:
+        transform 500ms theme(transitionTimingFunction.quad-out),
+        opacity 500ms ease-out;
       transition-delay: calc(var(--index) * 100ms + 200ms);
 
       .is-reverse & {
-        transition: transform 500ms theme(transitionTimingFunction.quad-out), opacity 500ms ease-out;
+        transition:
+          transform 500ms theme(transitionTimingFunction.quad-out),
+          opacity 500ms ease-out;
         transition-delay: calc((var(--total) - var(--index)) * 100ms + 200ms);
       }
     }
@@ -26,6 +34,307 @@
   &.is-prev {
     & .--text {
       @apply translate-y-[-3em] opacity-0;
+    }
+  }
+}
+
+.effect-loading {
+  @apply fixed inset-0 z-[9999] cursor-wait bg-bg opacity-100;
+  transition: opacity 1600ms theme(transitionTimingFunction.slow-out);
+
+  .is-loaded & {
+    @apply opacity-0;
+  }
+}
+
+.effect-fv {
+  & .--image {
+    @apply scale-[1.15];
+  }
+
+  & .--title {
+    & .char {
+      & span {
+        @apply opacity-0 blur-md;
+        transform: perspective(1000px) translateY(60%);
+      }
+    }
+  }
+
+  & .--text {
+    & .char {
+      @apply overflow-hidden;
+
+      & span {
+        transform: perspective(1000px) translateY(110%);
+      }
+    }
+  }
+
+  .is-loaded & {
+    & .--image {
+      @apply scale-100;
+      transition: transform 1600ms theme(transitionTimingFunction.slow-out);
+    }
+
+    & .--title {
+      & .char {
+        & span {
+          @apply opacity-100 blur-0;
+          transform: perspective(1000px) translateY(0);
+          transition:
+            transform 800ms theme(transitionTimingFunction.slow-out),
+            opacity 1600ms theme(transitionTimingFunction.slow-out),
+            filter 1600ms theme(transitionTimingFunction.slow-out);
+          transition-delay: var(--left-delay);
+        }
+      }
+    }
+
+    & .--text {
+      & .char {
+        & span {
+          transform: perspective(1000px) translateY(0);
+          transition: transform 800ms theme(transitionTimingFunction.slow-out);
+          transition-delay: calc(var(--left-delay) + 800ms);
+        }
+      }
+    }
+  }
+}
+
+.effect-header {
+  @apply -translate-y-full opacity-0;
+
+  .is-loaded & {
+    @apply translate-y-0 opacity-100;
+    transition:
+      transform 800ms theme(transitionTimingFunction.slow-out),
+      opacity 800ms theme(transitionTimingFunction.slow-out);
+    transition-delay: calc(var(--delay) + 800ms);
+  }
+}
+
+.effect-split-line {
+  & .line {
+    @apply overflow-hidden;
+  }
+
+  & .word {
+    transform: perspective(1000px) translateY(115%);
+  }
+
+  .is-active & {
+    & .word {
+      transform: perspective(1000px) translateY(0);
+      transition: transform 800ms theme(transitionTimingFunction.quad-out);
+    }
+  }
+}
+
+.effect-split-word {
+  & .line {
+    @apply overflow-hidden;
+  }
+
+  & .word {
+    transform: perspective(1000px) translateY(115%);
+  }
+
+  .is-active & {
+    & .word {
+      transform: perspective(1000px) translateY(0);
+      transition: transform 800ms theme(transitionTimingFunction.quad-out);
+      transition-delay: var(--left-delay);
+    }
+
+    &.--center {
+      & .word {
+        transition-delay: var(--center-delay);
+      }
+    }
+  }
+}
+
+.effect-split-char {
+  & .char {
+    @apply overflow-hidden;
+
+    & span {
+      transform: perspective(1000px) translateY(110%);
+    }
+  }
+
+  .is-active & {
+    & .char {
+      & span {
+        transform: perspective(1000px) translateY(0);
+        transition: transform 800ms theme(transitionTimingFunction.slow-out);
+        transition-delay: calc(var(--left-delay) + var(--delay));
+      }
+    }
+
+    &.--center {
+      & .char {
+        & span {
+          transition-delay: calc(var(--center-delay) + var(--delay));
+        }
+      }
+    }
+  }
+}
+
+.effect-dropdown {
+  @apply invisible;
+  transition: visibility 800ms;
+
+  & .--item {
+    @apply translate-y-5 opacity-0;
+    transition:
+      transform 800ms theme(transitionTimingFunction.expo-out),
+      opacity 800ms ease;
+  }
+
+  &.is-open {
+    @apply visible;
+    transition: visibility 0ms;
+
+    & .--item {
+      @apply translate-y-0 opacity-100;
+      transition:
+        transform 400ms theme(transitionTimingFunction.expo-out),
+        opacity 400ms ease;
+      transition-delay: var(--delay);
+    }
+  }
+}
+
+.effect-title {
+  & .--label {
+    & .char {
+      @apply overflow-hidden;
+
+      & span {
+        transform: perspective(1000px) translateY(110%);
+      }
+    }
+  }
+
+  & .--title {
+    & .char {
+      & span {
+        @apply opacity-0 blur-md;
+        transform: perspective(1000px) translateY(60%);
+      }
+    }
+  }
+
+  &.is-active {
+    & .--label {
+      & .char {
+        & span {
+          transform: perspective(1000px) translateY(0);
+          transition: transform 800ms theme(transitionTimingFunction.slow-out);
+          transition-delay: var(--left-delay);
+        }
+      }
+    }
+
+    & .--title {
+      & .char {
+        & span {
+          @apply opacity-100 blur-0;
+          transform: perspective(1000px) translateY(0);
+          transition:
+            transform 800ms theme(transitionTimingFunction.slow-out),
+            opacity 1600ms theme(transitionTimingFunction.slow-out),
+            filter 1600ms theme(transitionTimingFunction.slow-out);
+          transition-delay: var(--left-delay);
+        }
+      }
+    }
+  }
+}
+
+.effect-fadein {
+  @apply opacity-0 translate-y-10;
+
+  .is-active & {
+    @apply opacity-100 translate-y-0;
+    transition:
+      opacity 1600ms theme(transitionTimingFunction.slow-out),
+      transform 1600ms theme(transitionTimingFunction.slow-out);
+    transition-delay: var(--delay);
+  }
+}
+
+.effect-item {
+  & .--line {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  & .--image {
+    opacity: 0;
+    clip-path: inset(15%);
+    overflow: hidden;
+
+    & img {
+      transform: scale(1.2);
+    }
+  }
+
+  & .--fadein {
+    @apply opacity-0 translate-y-10;
+  }
+
+  & .--char {
+    & .char {
+      @apply overflow-hidden;
+
+      & span {
+        transform: perspective(1000px) translateY(110%);
+      }
+    }
+  }
+
+  &.is-active {
+    & .--line {
+      clip-path: inset(0);
+      transition: clip-path 1600ms theme(transitionTimingFunction.slow-out);
+      transition-delay: var(--delay);
+    }
+
+    & .--image {
+      opacity: 1;
+      clip-path: inset(0);
+      transition:
+        clip-path 1600ms theme(transitionTimingFunction.slow-out),
+        opacity 1600ms theme(transitionTimingFunction.slow-out);
+      transition-delay: var(--delay);
+
+      & img {
+        transform: scale(1);
+        transition: transform 1600ms theme(transitionTimingFunction.slow-out);
+        transition-delay: var(--delay);
+      }
+    }
+
+    & .--fadein {
+      @apply opacity-100 translate-y-0;
+      transition:
+        opacity 1600ms theme(transitionTimingFunction.slow-out),
+        transform 1600ms theme(transitionTimingFunction.slow-out);
+      transition-delay: var(--delay);
+    }
+
+    & .--char {
+      & .char {
+        & span {
+          transform: perspective(1000px) translateY(0);
+          transition: transform 1600ms theme(transitionTimingFunction.slow-out);
+          transition-delay: var(--delay);
+        }
+      }
     }
   }
 }

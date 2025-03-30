@@ -3,7 +3,23 @@ const { label, ...props } = Astro.props;
 ---
 
 <div class="w-full h-auto">
-  <a {...props} class="link w-full h-auto py-[calc(22/16*1rem)] md:py-[calc(30/16*1rem)] grid place-content-center rounded-full bg-black-base overflow-hidden">
-    <p class="title-en-lg text-nowrap">{label}</p>
+  <a
+    x-data="hover"
+    @mouseenter="rollEnter"
+    @mouseleave="rollLeave"
+    data-enter-time="600"
+    data-leave-time="800"
+    {...props}
+    class="link-cta relative w-full h-auto py-[calc(22/16*1rem)] md:py-7 grid place-content-center rounded-full bg-black-base"
+  >
+    <p x-data="splitLabel" class="--label title-en-lg !leading-normal text-nowrap">{label}</p>
+    <svg
+      class="--line lg:block hidden absolute top-0 left-0 size-full z-10 !max-w-none !overflow-visible pointer-events-none"
+    >
+      <rect
+        ry="50%"
+        class="absolute top-0 left-0 size-full fill-transparent stroke-white [stroke-width:2]"
+      ></rect>
+    </svg>
   </a>
 </div>
