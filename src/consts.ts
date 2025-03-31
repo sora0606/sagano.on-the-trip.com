@@ -1,7 +1,6 @@
-export const siteTitle = 'sdenv';
+export const siteTitle = 'トロッコ列車に乗りながら体験する、歴史を走るオーディオガイド';
 export const siteLang = 'ja';
 export const siteRegion = 'JP';
-export const siteTwitterId = 'sdenv_dev';
 
 export const CTAItems = [
   {

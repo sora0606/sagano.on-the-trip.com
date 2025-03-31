@@ -10,7 +10,7 @@ import * as config from './config';
 export default defineConfig({
   base: config.pathPrefix,
   outDir: `./dist${config.pathPrefix}`,
-  site: 'https://example.com',
+  site: 'https://sagano.on-the-trip.com',
   i18n: {
     defaultLocale: 'ja',
     locales: ['ja', 'en', 'sc', 'kr'],
