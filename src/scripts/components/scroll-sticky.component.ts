@@ -21,9 +21,10 @@ Alpine.data('scrollSticky', () => {
       }
 
       root = this.$root;
-
       this.total = Number(root.dataset.total);
+    },
 
+    setup() {
       gsap.to(root, {
         scrollTrigger: {
           trigger: root,

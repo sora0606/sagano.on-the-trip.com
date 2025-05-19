@@ -84,6 +84,7 @@ const StoryItems = [
         class="relative w-full"
         x-bind:class="{ 'is-reverse': direction < 0 }"
         x-bind:style="`--progress: ${progress}; height: calc(150svh * ${total})`"
+        @loading:completed.window="setup"
       >
         <div class="sticky top-0 w-full h-dvh z-10">
           <span
